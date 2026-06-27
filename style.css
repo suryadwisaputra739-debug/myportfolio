@@ -296,6 +296,67 @@ body[data-theme="blue"] .hero {
     animation: slideInUp 1s ease-out 0.6s backwards;
 }
 
+/* Availability Badge */
+.availability-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 18px;
+    border: 1px solid var(--primary-gold);
+    border-radius: 50px;
+    color: var(--primary-gold);
+    font-size: 0.9em;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    background: rgba(201, 168, 76, 0.08);
+    animation: slideInUp 1s ease-out backwards;
+}
+
+body[data-theme="blue"] .availability-badge {
+    border-color: #5B7BFD;
+    color: #5B7BFD;
+    background: rgba(91, 123, 253, 0.1);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #2ecc71;
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.6);
+    animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+    0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.6); }
+    70% { box-shadow: 0 0 0 8px rgba(46, 204, 113, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+}
+
+/* Scroll Down Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--primary-gold);
+    font-size: 1.4em;
+    opacity: 0.8;
+    z-index: 2;
+    animation: bounce-down 2s ease-in-out infinite;
+    transition: var(--transition);
+}
+
+.scroll-indicator:hover {
+    opacity: 1;
+    color: var(--light-gold);
+}
+
+@keyframes bounce-down {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(10px); }
+}
+
 /* Buttons */
 .btn {
     padding: 12px 32px;

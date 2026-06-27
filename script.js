@@ -128,6 +128,42 @@ if (skillSection) {
 }
 
 // ============================================
+// 4b. STAT NUMBERS COUNT-UP ANIMATION
+// ============================================
+const statNumbers = document.querySelectorAll('.stat-box h3[data-count]');
+
+const animateCountUp = (el) => {
+    const target = parseInt(el.getAttribute('data-count'), 10);
+    const suffix = el.getAttribute('data-suffix') || '';
+    const duration = 1200;
+    const stepTime = 30;
+    const steps = Math.max(Math.round(duration / stepTime), 1);
+    const increment = target / steps;
+    let current = 0;
+
+    const counter = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            el.textContent = target + suffix;
+            clearInterval(counter);
+        } else {
+            el.textContent = Math.floor(current) + suffix;
+        }
+    }, stepTime);
+};
+
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            animateCountUp(entry.target);
+            statsObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+
+statNumbers.forEach(el => statsObserver.observe(el));
+
+// ============================================
 // 5. FADE IN ANIMATIONS ON SCROLL
 // ============================================
 const fadeElements = document.querySelectorAll('[class*="fadeInUp"], [class*="slideIn"]');
